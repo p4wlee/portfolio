@@ -1,0 +1,16 @@
+// Load order matters: reset clears browser defaults, Bootstrap builds on top,
+// and our own base styles come last so they win the cascade naturally.
+
+// 1. Reset: neutralize browser default styles first.
+@use "reset";
+
+// 2. Full Bootstrap bundle for now; we'll trim it to grid + forms only in Phase 7.
+@use "../../node_modules/bootstrap/scss/bootstrap";
+
+// 3. Our global design choices, loaded last to override Bootstrap's body defaults.
+@use "base";
+
+// Note: variables and mixins are not imported here — they output no CSS on their own,
+// and each partial that needs them imports them directly with its own @use.
+// We use @use (not @forward) because this file only assembles the final CSS output;
+// @forward would be for re-exposing definitions to other files, which we don't do here.

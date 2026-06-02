@@ -1,0 +1,13 @@
+@use "variables";
+
+// Global page styling: background, text color, site font, and horizontal overflow guard
+body {
+  background-color: variables.$bg-color;
+  color: variables.$text-color;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    sans-serif;
+  overflow-x: hidden;
+}

@@ -1,0 +1,26 @@
+// Background color
+$bg-color: #0b0f14;
+// Main text color
+$text-color: #e8edf2;
+// Secondary/muted text color
+$muted-color: #aab9c6;
+// Primary brand color (purple)
+$brand1-color: #7c3aed;
+// Secondary brand color (cyan)
+$brand2-color: #06b6d4;
+// Border radius for cards and badges
+$radius: 18px;
+// Breakpoint for desktop
+$breakpoint-lg: 992px;
+// Breakpoint for tablet
+$breakpoint-md: 768px;
+// Z-index for star field background
+$z-index-field: 0;
+// Z-index for main content
+$z-index-content: 1;
+// Z-index for navbar (always on top)
+$z-index-navbar: 10;
+// Standard transition duration
+$transition: 300ms;
+// Base font size
+$font-size-base: 16px;

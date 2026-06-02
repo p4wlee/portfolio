@@ -1,0 +1,19 @@
+// Universal box-model reset, including pseudo-elements
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Smooth scrolling for in-page anchor navigation
+html {
+  scroll-behavior: smooth;
+}
+
+// Form elements inherit the page font instead of the browser's defaults
+input,
+button {
+  font: inherit;
+}

@@ -1,0 +1,32 @@
+// Center content both horizontally and vertically
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Generate a responsive media query for the given breakpoint (md or lg)
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == md {
+    // Tablet and above
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    // Desktop and above
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  }
+}
+
+// Apply a standard transition to a given CSS property
+@mixin transition($property) {
+  transition: $property $transition;
+}
+
+// Initial state for scroll reveal animations (invisible and shifted down)
+@mixin reveal-base {
+  opacity: 0;
+  transform: translateY(30px);
+}
