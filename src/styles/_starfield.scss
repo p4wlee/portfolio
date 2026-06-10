@@ -1,0 +1,48 @@
+@use "variables";
+@use "variables";
+
+// Outer wrapper of the whole star field. Fixed so it stays pinned to the
+// screen as a background, fills the viewport, sits behind content, lets
+// clicks pass through, and clips any star that drifts past the edges.
+.sf-root {
+  position: fixed;
+  inset: 0;
+  z-index: $z-index-field;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+// Shared base for both colored gradient layers: fills .sf-root, ignores clicks.
+.sf-grad {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+// Purple glow, top-right. Soft radial halo fading into transparency.
+.sf-grad-top {
+  background: radial-gradient(1200px 800px at 80% 10%, rgba($brand1-color, 0.28), transparent 60%);
+}
+
+// Cyan glow, bottom-left. Starts invisible (opacity 0); the StarField JS
+// fades it in based on scroll position.
+.sf-grad-bot {
+  background: radial-gradient(1000px 700px at 10% 90%, rgba($brand2-color, 0.24), transparent 55%);
+  opacity: 0;
+}
+
+// Holds all the individual stars the JS injects at runtime. Fills .sf-root.
+.sf-container {
+  position: absolute;
+  inset: 0;
+}
+
+// A single star. Absolutely placed by the JS, turned into a circle by the
+// border-radius, with will-change hinting the browser to optimize the
+// constantly animating transform and opacity.
+.sf-star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
