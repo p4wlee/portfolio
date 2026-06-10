@@ -1,5 +1,4 @@
 @use "variables";
-@use "variables";
 
 // Outer wrapper of the whole star field. Fixed so it stays pinned to the
 // screen as a background, fills the viewport, sits behind content, lets
@@ -7,7 +6,7 @@
 .sf-root {
   position: fixed;
   inset: 0;
-  z-index: $z-index-field;
+  z-index: variables.$z-index-field;
   pointer-events: none;
   overflow: hidden;
 }
@@ -21,13 +20,13 @@
 
 // Purple glow, top-right. Soft radial halo fading into transparency.
 .sf-grad-top {
-  background: radial-gradient(1200px 800px at 80% 10%, rgba($brand1-color, 0.28), transparent 60%);
+  background: radial-gradient(1200px 800px at 80% 10%, rgba(variables.$brand1-color, 0.28), transparent 60%);
 }
 
 // Cyan glow, bottom-left. Starts invisible (opacity 0); the StarField JS
 // fades it in based on scroll position.
 .sf-grad-bot {
-  background: radial-gradient(1000px 700px at 10% 90%, rgba($brand2-color, 0.24), transparent 55%);
+  background: radial-gradient(1000px 700px at 10% 90%, rgba(variables.$brand2-color, 0.24), transparent 55%);
   opacity: 0;
 }
 
