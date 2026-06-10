@@ -1,5 +1,6 @@
 // Load order matters: reset clears browser defaults, Bootstrap builds on top,
 // and our own base styles come last so they win the cascade naturally.
+// Section styles come after the foundations, in cascade order.
 
 // 1. Reset: neutralize browser default styles first.
 @use "reset";
@@ -9,6 +10,11 @@
 
 // 3. Our global design choices, loaded last to override Bootstrap's body defaults.
 @use "base";
+
+// --- Site sections ---
+
+// 4. StarField background: first section partial, loaded after the foundations.
+@use "starfield";
 
 // Note: variables and mixins are not imported here — they output no CSS on their own,
 // and each partial that needs them imports them directly with its own @use.
