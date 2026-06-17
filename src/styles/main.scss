@@ -16,6 +16,10 @@
 // 4. StarField background: first section partial, loaded after the foundations.
 @use "starfield";
 
+// 5. Navbar: fixed top bar, loaded after starfield so its rules win over Bootstrap's
+// own .navbar styles (Bootstrap is imported earlier, so later = higher priority).
+@use "navbar";
+
 // Note: variables and mixins are not imported here — they output no CSS on their own,
 // and each partial that needs them imports them directly with its own @use.
 // We use @use (not @forward) because this file only assembles the final CSS output;

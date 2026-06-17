@@ -1,0 +1,37 @@
+@use "variables";
+
+// Fixed top bar: floats above the stars and the content, stays pinned on
+// scroll. Frosted-glass look = translucent background + blurred backdrop.
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: variables.$z-index-navbar;
+
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 2rem;
+
+  background: rgba(variables.$bg-color, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); // Safari needs the prefixed version
+
+  // Links: muted by default, brighten on hover, accent color when active.
+  a {
+    color: variables.$muted-color;
+    text-decoration: none;
+    transition: color variables.$transition ease;
+
+    &:hover {
+      color: variables.$text-color;
+    }
+
+    // The .active class gets applied later by useActiveSection (Pass 2).
+    // Styled now so the light is ready when the switch arrives.
+    &.active {
+      color: variables.$brand2-color;
+    }
+  }
+}
