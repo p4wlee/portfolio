@@ -1,5 +1,14 @@
+import StarField from "./components/StarField";
+import useActiveSection from "./hooks/useActiveSection";
+import Navbar from "./components/Navbar";
 function App() {
-  return <h1>Funziona</h1>;
+  const activeSectionId = useActiveSection();
+  return (
+    <>
+      <StarField />
+      <Navbar activeSectionId={activeSectionId} />
+    </>
+  );
 }
 
 export default App;
