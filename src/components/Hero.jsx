@@ -26,7 +26,7 @@ export default function Hero() {
   }, [text]); // re-run whenever `text` changes, driving the animation forward
 
   return (
-    <section id="hero" className="hero">
+    <section id="hero" className="section hero">
       <h1>Davide Paulicelli</h1>
       <p>
         {text}
