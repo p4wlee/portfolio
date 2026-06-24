@@ -1,0 +1,26 @@
+// Shared structural layout: the scaffolding every section sits on.
+// Not tied to any single component — loaded once, after the foundations,
+// so all sections inherit the same skeleton.
+
+@use "variables" as *;
+
+// Content wrapper: sits above the StarField background. position: relative
+// creates a stacking context so z-index takes effect and keeps the content
+// layer in front of the stars.
+.content {
+  position: relative;
+  z-index: $z-index-content;
+}
+
+// Every section is full-height and centers its content. min-height: 100vh is
+// what gives each section its own "screen": it's what lets the scroll sensor
+// tell sections apart, and what stops them from stacking on top of each other.
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  text-align: center;
+}

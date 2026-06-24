@@ -11,14 +11,21 @@
 // 3. Our global design choices, loaded last to override Bootstrap's body defaults.
 @use "base";
 
+// 4. Shared layout (.content, .section): the structural skeleton every section
+// sits on. After Bootstrap so our padding/display rules win the cascade.
+@use "layout";
+
 // --- Site sections ---
 
-// 4. StarField background: first section partial, loaded after the foundations.
+// 5. StarField background: first section partial, loaded after the foundations.
 @use "starfield";
 
-// 5. Navbar: fixed top bar, loaded after starfield so its rules win over Bootstrap's
+// 6. Navbar: fixed top bar, loaded after starfield so its rules win over Bootstrap's
 // own .navbar styles (Bootstrap is imported earlier, so later = higher priority).
 @use "navbar";
+
+// 7. Hero: name gradient and role line. Component-specific styles, after layout.
+@use "hero";
 
 // Note: variables and mixins are not imported here — they output no CSS on their own,
 // and each partial that needs them imports them directly with its own @use.

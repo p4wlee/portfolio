@@ -1,0 +1,26 @@
+// Hero section styles: the name with a gradient text fill, and the role line
+// in muted color. Structural rules (height, centering) come from .section in
+// _layout.scss — this file only adds what's specific to the Hero.
+
+@use "variables" as *;
+
+.hero {
+  // The name: large, responsive size via clamp(), with a white-to-cyan
+  // gradient clipped to the text shape.
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 600;
+    background: linear-gradient(135deg, #fff 30%, $brand2-color 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  // The role line (typewriter target): smaller, muted, also responsive.
+  p {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: $muted-color;
+  }
+}
