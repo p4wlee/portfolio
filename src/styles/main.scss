@@ -15,16 +15,19 @@
 // sits on. After Bootstrap so our padding/display rules win the cascade.
 @use "layout";
 
+// 5. Scroll-reveal animations, shared across all sections.
+@use "reveal";
+
 // --- Site sections ---
 
-// 5. StarField background: first section partial, loaded after the foundations.
+// 6. StarField background: first section partial, loaded after the foundations.
 @use "starfield";
 
-// 6. Navbar: fixed top bar, loaded after starfield so its rules win over Bootstrap's
+// 7. Navbar: fixed top bar, loaded after starfield so its rules win over Bootstrap's
 // own .navbar styles (Bootstrap is imported earlier, so later = higher priority).
 @use "navbar";
 
-// 7. Hero: name gradient and role line. Component-specific styles, after layout.
+// 8. Hero: name gradient and role line. Component-specific styles, after layout.
 @use "hero";
 
 // Note: variables and mixins are not imported here — they output no CSS on their own,

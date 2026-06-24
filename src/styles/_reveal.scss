@@ -1,0 +1,19 @@
+// Scroll-reveal animations, shared across sections.
+// The useReveal hook adds .is-visible when an element enters the viewport;
+// these classes define the start state and the transition to the visible one.
+// Each section can use a different entrance (slide, fade...) but the mechanism
+// is always the same: base class = hidden/offset, .is-visible = final state.
+
+// Slide in from the left (used by About).
+.reveal-slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition:
+    opacity 1800ms ease,
+    transform 1800ms ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
