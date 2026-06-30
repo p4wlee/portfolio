@@ -3,6 +3,7 @@ import useActiveSection from "./hooks/useActiveSection";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Skills from "./components/Skills";
 function App() {
   const activeSectionId = useActiveSection();
   return (
@@ -12,6 +13,7 @@ function App() {
       <main className="content">
         <Hero />
         <About />
+        <Skills />
       </main>
     </>
   );
