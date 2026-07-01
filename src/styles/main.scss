@@ -30,6 +30,9 @@
 // 8. Hero: name gradient and role line. Component-specific styles, after layout.
 @use "hero";
 
+// 9. Skills: responsive logo grid with staggered "wave" reveal and hover effects.
+@use "skills";
+
 // Note: variables and mixins are not imported here — they output no CSS on their own,
 // and each partial that needs them imports them directly with its own @use.
 // We use @use (not @forward) because this file only assembles the final CSS output;
