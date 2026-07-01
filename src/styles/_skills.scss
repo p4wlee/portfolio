@@ -1,0 +1,87 @@
+@use "variables" as *;
+
+.skills {
+  // Constrain and center the grid so the 4 badges stay grouped, not stretched
+  // across the full section width.
+  .row {
+    width: 100%;
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  h2 {
+    margin-bottom: 3rem;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+  }
+
+  .skill {
+    // Stack logo above name, centered.
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
+
+    // Wave entrance — starting state: hidden and shifted down.
+    // The badge animates to its resting state once the section becomes
+    // visible (see `.is-visible` rule below). The per-badge delay comes
+    // from an inline transitionDelay in the JSX, producing the stagger.
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s ease,
+      transform 1.8s ease;
+
+    img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain; // keep aspect ratio inside the box, no distortion
+      transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+    }
+
+    // Name is hidden by default and revealed on hover (see below).
+    .skill-name {
+      opacity: 0;
+      transform: translateY(6px);
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    // Hover: logo grows and gets a purple glow.
+    &:hover img {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.6));
+    }
+
+    // Hover: name fades up into view.
+    &:hover .skill-name {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // Monochrome logos (Express, GitHub): invert black -> white so they're
+  // visible on the dark background.
+  .skill--invert img {
+    filter: invert(1);
+  }
+
+  // On hover, `filter` is a single property, so the glow rule above would
+  // otherwise replace the inversion and flash the logo black. Re-apply both
+  // filters together to keep it white while glowing.
+  .skill--invert:hover img {
+    filter: invert(1) drop-shadow(0 0 10px rgba(124, 58, 237, 0.6));
+  }
+
+  // Wave entrance — end state: triggered when useReveal adds `is-visible`
+  // to the section. All badges settle in, each after its own delay.
+  &.is-visible .skill {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
