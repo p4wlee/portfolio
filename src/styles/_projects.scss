@@ -1,0 +1,121 @@
+@use "variables" as *;
+
+// Projects: restyle Bootstrap's default (white) .card into the site's dark,
+// glassy theme, laid out in a centered responsive grid — a sibling in feel
+// to the Skills section (same radius, same purple hover glow).
+
+.projects {
+  // Keep the grid from stretching edge-to-edge on wide screens, like Skills.
+  .row {
+    width: 100%;
+    max-width: 1150px;
+    margin-inline: auto;
+  }
+
+  h2 {
+    margin-bottom: 3rem;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+  }
+
+  .card {
+    height: 100%; // equal-height cards across a row
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1.75rem;
+    text-align: left; // override the section's centered text
+
+    // "Glass" look: a whisper of white over the dark bg (not a solid fill),
+    // so the starfield still reads faintly behind the card.
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: $radius;
+
+    // Scroll-reveal starting state: hidden and shifted down. The card
+    // animates to its resting state once the section gains `is-visible`.
+    opacity: 0;
+    transform: translateY(30px);
+
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s ease,
+      border-color $transition ease,
+      box-shadow $transition ease;
+
+    h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: $text-color;
+      transition: color $transition ease;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: $muted-color;
+    }
+
+    // Button row, pinned to the card's bottom so the rows line up across
+    // cards of different heights.
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: auto;
+    }
+
+    a {
+      padding: 0.5rem 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: $text-color;
+      transition:
+        color $transition ease,
+        border-color $transition ease,
+        background $transition ease;
+
+      // Cyan fill on hover, echoing the site's secondary brand colour.
+      &:hover {
+        color: $bg-color;
+        background: $brand2-color;
+        border-color: $brand2-color;
+      }
+    }
+
+    // Card hover: lifts, the title tints cyan, and the border glows purple —
+    // the same glow language as the Skills logos, for a cohesive feel.
+    &:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124, 58, 237, 0.6);
+      box-shadow: 0 12px 30px rgba(124, 58, 237, 0.18);
+
+      h3 {
+        color: $brand2-color;
+      }
+    }
+  }
+
+  // Scroll-reveal end state: triggered when useReveal adds `is-visible` to
+  // the section. Every card settles into place.
+  &.is-visible .card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  // Loading / error messages live inside <section id="projects">, so they
+  // inherit the section's full-height centering; we only tune colour + size.
+  &.loading {
+    color: $muted-color;
+    font-size: 1.1rem;
+  }
+
+  &.error {
+    color: #ff6b6b; // soft red, readable on the dark bg
+    font-size: 1.1rem;
+  }
+}
