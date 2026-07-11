@@ -3,7 +3,13 @@ import { useState, useEffect } from "react";
 
 // Repos to hide from the portfolio: this site's own repo and the old one.
 // Filtered out by name before the data ever reaches state.
-const EXCLUDE = ["portfolio", "portfolio-personale"];
+const EXCLUDE = ["portfolio", "portfolio-personale", "p4wlee"];
+
+// Curated display order, best projects first. A repo's position in this list
+// is its rank; anything not listed falls to the end (see the sort below).
+// This keeps the showcase stable — it no longer shuffles when a repo is
+// touched on GitHub (the API's default order is by last push).
+const ORDER = ["match_predictor", "plantyoffood", "moove", "orizon", "EduQuiz", "tongue", "the-counter", "Calcolatore-di-Emissioni"];
 
 // Projects section: fetches the public repos from the GitHub API on mount,
 // filters out the excluded ones, and renders each as a card in a responsive
@@ -32,6 +38,10 @@ export default function Projects() {
         const data = await res.json();
         // Drop the excluded repos before they reach state.
         const visible = data.filter((repo) => !EXCLUDE.includes(repo.name));
+        // Reorder by the curated ORDER list: subtracting the two positions
+        // yields a negative/positive number, which is exactly what sort wants
+        // to decide who comes first.
+        visible.sort((a, b) => ORDER.indexOf(a.name) - ORDER.indexOf(b.name));
         if (active) {
           setData(visible);
           setLoading(false);
