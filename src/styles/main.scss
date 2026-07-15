@@ -37,6 +37,10 @@
 // Bootstrap's default .card into the dark theme.
 @use "projects";
 
+// 11. Contact: controlled form styled from scratch into the dark glass theme
+// (no Bootstrap form classes used — see the section's own SCSS).
+@use "contact";
+
 // Note: variables and mixins are not imported here — they output no CSS on their own,
 // and each partial that needs them imports them directly with its own @use.
 // We use @use (not @forward) because this file only assembles the final CSS output;
