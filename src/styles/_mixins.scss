@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 // Center content both horizontally and vertically
 @mixin flex-center {
   display: flex;
