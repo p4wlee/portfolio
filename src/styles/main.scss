@@ -41,6 +41,10 @@
 // (no Bootstrap form classes used — see the section's own SCSS).
 @use "contact";
 
+// 12. Footer: the site's sign-off — copyright line and social logos in the dark
+// glass theme, with a purple-glow hover echoing the Projects cards.
+@use "footer";
+
 // Note: variables and mixins are not imported here — they output no CSS on their own,
 // and each partial that needs them imports them directly with its own @use.
 // We use @use (not @forward) because this file only assembles the final CSS output;
