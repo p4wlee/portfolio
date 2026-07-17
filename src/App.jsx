@@ -6,6 +6,7 @@ import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 function App() {
   const activeSectionId = useActiveSection();
   return (
@@ -18,6 +19,7 @@ function App() {
         <Skills />
         <Projects />
         <Contact />
+        <Footer />
       </main>
     </>
   );
