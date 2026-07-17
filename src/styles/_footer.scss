@@ -1,0 +1,92 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// Footer: the site's sign-off. A quiet copyright line and two social logos,
+// wearing the same dark-glass skin as Contact and Projects. Nothing new is
+// invented here — every colour, radius and timing comes from the design tokens,
+// so the footer reads as part of the same site. The whole block fades up on
+// first scroll-in, matching the reveal used across the other sections.
+
+.footer {
+  // Vertical stack: copyright on top, the two logos below, all centered.
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+
+  // Compact by design: a footer only needs a little breathing room, not a full
+  // section's worth. Side padding keeps it off the screen edges on mobile.
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+
+  // Scroll-reveal starting state: the whole footer is hidden and shifted down,
+  // then settles once useReveal adds `is-visible` (rule at the bottom).
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+
+  // Copyright: deliberately understated — muted and small. It's a formality, so
+  // it should whisper, not shout.
+  p {
+    color: $muted-color;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+  }
+}
+
+// Row holding the two logo links.
+.footer-socials {
+  @include flex-center; // horizontal + vertical centering (from _mixins)
+  gap: 1.25rem;
+
+  // Each link is a round "button" around its icon: a comfortable click/tap
+  // target, and a surface for the hover glow to sit on.
+  a {
+    @include flex-center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    color: $text-color; // the GitHub octocat inherits this via currentColor
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition:
+      transform $transition ease,
+      background $transition ease,
+      border-color $transition ease,
+      box-shadow $transition ease;
+
+    // Hover: lift + purple ring + glow — the same purple glow language as the
+    // Projects cards, for a cohesive feel. The effect lives AROUND the icon, so
+    // it works identically on the one-colour GitHub mark and the two-colour
+    // LinkedIn one without touching their internal fills.
+    &:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(124, 58, 237, 0.6);
+      box-shadow: 0 0 18px rgba(124, 58, 237, 0.35);
+    }
+
+    // Pressed: settle back down for a tactile click.
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+// The SVG icons themselves: a fixed size (they ballooned earlier only because an
+// SVG with no size stretches to fill whatever space it finds).
+.footer-icon {
+  width: 26px;
+  height: 26px;
+}
+
+// Scroll-reveal end state: when useReveal adds `is-visible` to the footer, the
+// whole block settles into place.
+.footer.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
