@@ -1,0 +1,80 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// About: the personal intro — the section that "sells" who Davide is to a
+// recruiter, so it earns a bit more presence than a bare block of text. The copy
+// sits inside a single glass panel that borrows the Projects card language (same
+// radius, same faint white fill, same purple hover glow) so it reads as part of
+// the same family, while a small gradient accent under the heading draws the eye.
+// The section's slide-in entrance is handled by the shared `.reveal-slide-left`
+// class in _reveal.scss — here we only style the look, not the reveal.
+
+.about {
+  // The glass panel wrapping heading + paragraphs. A capped width keeps the
+  // lines short enough to read comfortably: a paragraph spanning a full desktop
+  // screen is tiring to follow.
+  .about-card {
+    width: 100%;
+    max-width: 760px;
+    padding: clamp(1.75rem, 4vw, 3rem);
+    text-align: left; // override the section's centered text for readability
+
+    // Same "glass" recipe as the Projects cards: a whisper of white over the
+    // dark bg, so the starfield still reads faintly behind the panel.
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: $radius;
+
+    // Only the interactive properties transition here; the entrance animation
+    // belongs to the section's .reveal-slide-left.
+    transition:
+      border-color $transition ease,
+      box-shadow $transition ease;
+
+    // Hover: the border glows purple and a soft halo lifts off the panel — the
+    // same glow language as the Projects cards and Skills logos, for cohesion.
+    &:hover {
+      border-color: rgba(124, 58, 237, 0.6);
+      box-shadow: 0 12px 30px rgba(124, 58, 237, 0.18);
+    }
+  }
+
+  h2 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: $text-color;
+
+    // A short gradient bar beneath the heading: brand purple → cyan, the site's
+    // two accent colours. A small touch that makes the intro feel designed
+    // rather than default, and ties the heading into the palette.
+    &::after {
+      content: "";
+      display: block;
+      width: 64px;
+      height: 3px;
+      margin-top: 0.75rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, $brand1-color, $brand2-color);
+    }
+  }
+
+  p {
+    margin: 0 0 1.15rem;
+    font-size: 1rem;
+    line-height: 1.75; // generous leading so the long copy breathes
+    color: $muted-color;
+
+    // No trailing gap after the last paragraph, so the panel's bottom padding
+    // stays even.
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // A hair more body size from tablet up, where there's room for it.
+  @include respond-to(md) {
+    p {
+      font-size: 1.05rem;
+    }
+  }
+}
