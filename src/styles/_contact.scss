@@ -62,9 +62,9 @@
     // "you're typing here". Replaces the browser's default blue outline.
     &:focus {
       outline: none;
-      border-color: $brand2-color;
+      border-color: $brand1-color;
       background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
     }
   }
 
