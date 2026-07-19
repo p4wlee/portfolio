@@ -1,7 +1,13 @@
 @use "variables";
+@use "mixins";
 
 // Fixed top bar: floats above the stars and the content, stays pinned on
 // scroll. Frosted-glass look = translucent background + blurred backdrop.
+//
+// Mobile-first: by default (phones) the bar shows only the hamburger button and
+// the links are collapsed, dropping down as a vertical panel when the menu is
+// open. From tablet up (respond-to(md)) the hamburger disappears and the links
+// return to the usual horizontal row.
 .navbar {
   position: fixed;
   top: 0;
@@ -10,13 +16,47 @@
   z-index: variables.$z-index-navbar;
 
   display: flex;
-  justify-content: center;
-  gap: 2rem;
+  align-items: center;
+  justify-content: flex-end; // hamburger sits on the right (mobile)
+  flex-wrap: wrap; // lets the links panel drop onto its own line
   padding: 1rem 2rem;
 
   background: rgba(variables.$bg-color, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px); // Safari needs the prefixed version
+
+  // Hamburger button. Reset the browser's default button chrome so only the
+  // icon shows. Visible on mobile; hidden from tablet up.
+  .navbar-toggle {
+    background: none;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: variables.$text-color;
+    cursor: pointer;
+    transition: color variables.$transition ease;
+
+    &:hover {
+      color: variables.$brand2-color;
+    }
+  }
+
+  // The links group. On mobile it's hidden until the menu opens, then shown as
+  // a full-width vertical column below the bar.
+  .navbar-links {
+    display: none; // collapsed by default on mobile
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%; // takes the wrapped line in full
+    padding-top: 1rem;
+  }
+
+  // Open state: the `open` class on <nav> (driven by isOpen) reveals the panel.
+  &.open .navbar-links {
+    display: flex;
+  }
 
   // Links: muted by default, brighten on hover, accent color when active.
   a {
@@ -28,10 +68,29 @@
       color: variables.$text-color;
     }
 
-    // The .active class gets applied later by useActiveSection (Pass 2).
-    // Styled now so the light is ready when the switch arrives.
+    // Applied by useActiveSection: highlights the section currently in view.
     &.active {
       color: variables.$brand2-color;
+    }
+  }
+
+  // --- Tablet and up: back to the classic horizontal bar ---
+  @include mixins.respond-to(md) {
+    justify-content: center; // links centered in the bar again
+    flex-wrap: nowrap;
+
+    // No hamburger on wider screens — there's room for the full row.
+    .navbar-toggle {
+      display: none;
+    }
+
+    // Links always visible, laid out in a row regardless of isOpen.
+    .navbar-links {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      width: auto;
+      padding-top: 0;
     }
   }
 }
