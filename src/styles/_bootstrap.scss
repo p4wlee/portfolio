@@ -1,0 +1,17 @@
+// Bootstrap, trimmed to only what we use.
+// The full bundle ships buttons, modals, carousels, tooltips and much more —
+// we only rely on the responsive grid (row / col), so we pull in just that,
+// preceded by Bootstrap's required core (functions, variables, maps, mixins).
+// Those core files emit no CSS on their own; they're the shared tools every
+// module depends on.
+//
+// This lives in its own partial because Bootstrap's internals use the old @import
+// syntax, and Sass forbids @import from sitting between main.scss's @use rules.
+// Isolating the @imports here keeps main.scss all-@use, in cascade order.
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/variables-dark";
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/grid";
