@@ -5,8 +5,11 @@
 // 1. Reset: neutralize browser default styles first.
 @use "reset";
 
-// 2. Full Bootstrap bundle for now; we'll trim it to grid + forms only in Phase 7.
-@use "../../node_modules/bootstrap/scss/bootstrap";
+// 2. Bootstrap, trimmed to the responsive grid only (see _bootstrap.scss).
+// Kept in its own partial so main.scss can stay entirely @use-based: Sass requires
+// every @use to sit before any other rule, and Bootstrap's internal @imports would
+// otherwise break that ordering.
+@use "bootstrap";
 
 // 3. Our global design choices, loaded last to override Bootstrap's body defaults.
 @use "base";
@@ -23,25 +26,31 @@
 // 6. StarField background: first section partial, loaded after the foundations.
 @use "starfield";
 
-// 7. Navbar: fixed top bar, loaded after starfield so its rules win over Bootstrap's
-// own .navbar styles (Bootstrap is imported earlier, so later = higher priority).
+// 7. Navbar: fixed top bar. With Bootstrap trimmed to the grid only, it no longer
+// ships any .navbar styles, so there's nothing of its to override here anymore —
+// this file fully defines the navbar's look on its own.
 @use "navbar";
 
 // 8. Hero: name gradient and role line. Component-specific styles, after layout.
 @use "hero";
 
-// 9. Skills: responsive logo grid with staggered "wave" reveal and hover effects.
+// 9. About: personal intro in a glass panel echoing the Projects cards, with a
+// gradient accent under the heading. Placed here so the partial order mirrors the
+// on-page section order (Hero → About → Skills).
+@use "about";
+
+// 10. Skills: responsive logo grid with staggered "wave" reveal and hover effects.
 @use "skills";
 
-// 10. Projects: GitHub-fetched repo cards in a responsive grid, restyled from
+// 11. Projects: GitHub-fetched repo cards in a responsive grid, restyled from
 // Bootstrap's default .card into the dark theme.
 @use "projects";
 
-// 11. Contact: controlled form styled from scratch into the dark glass theme
+// 12. Contact: controlled form styled from scratch into the dark glass theme
 // (no Bootstrap form classes used — see the section's own SCSS).
 @use "contact";
 
-// 12. Footer: the site's sign-off — copyright line and social logos in the dark
+// 13. Footer: the site's sign-off — copyright line and social logos in the dark
 // glass theme, with a purple-glow hover echoing the Projects cards.
 @use "footer";
 
