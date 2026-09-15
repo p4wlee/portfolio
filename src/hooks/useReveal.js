@@ -28,8 +28,8 @@ export default function useReveal() {
           observer.unobserve(el);
         }
       },
-      // Trigger when at least 40% of the element is visible.
-      { threshold: 0.4 },
+      // Trigger when at least 30% of the element is visible.
+      { threshold: 0.3 },
     );
 
     // Start watching the element.
