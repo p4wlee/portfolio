@@ -21,7 +21,7 @@ export default function Footer() {
           security good-practice that always pairs with it. aria-label gives each
           icon-only link a name for screen readers, and aria-hidden hides the
           decorative SVG from them. */}
-      <div className="footer-socials">
+      <div className="footer-links">
         <a href="https://github.com/p4wlee" target="_blank" rel="noreferrer" aria-label="GitHub">
           {/* GitHub octocat: a single-colour mark. fill="currentColor" lets it
               inherit the link's text colour, so it stays visible on the dark bg
